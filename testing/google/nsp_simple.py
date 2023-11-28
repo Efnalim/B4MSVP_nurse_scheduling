@@ -1,10 +1,18 @@
+# PATAT conference
+# Timetabling comunity
 """Example of a simple nurse scheduling problem."""
 from ortools.sat.python import cp_model
 
 import json
 
-shift_to_int = {"Early": 0, "Day": 1, "Late": 2, "Night": 3}
+import matplotlib.pyplot as plt 
+import numpy as np 
+from matplotlib.colors import LogNorm
+import matplotlib.ticker as ticker 
+
+shift_to_int = {"Early": 0, "Day": 1, "Late": 2, "Night": 3, "Any": 4}
 skill_to_int = {"HeadNurse": 0, "Nurse": 1, "Caretaker": 2, "Trainee": 3}
+day_to_int = {"Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3, "Friday": 4, "Saturday": 5, "Sunday": 6}
 all_weeks = range(4)
 
 def add_shift_skill_req(model, req, shifts, shifts_with_skills, insufficient_staffing, all_nurses, all_days, all_shifts, all_skills):
@@ -71,9 +79,21 @@ def add_missing_skill_req(model, nurses_data, shifts_with_skills, all_days, all_
 
     return
 
-# def add_preferences(model): list
+def add_insatisfied_preferences_reqs(model, preferences, unsatisfied_preferences, shifts, all_nurses, all_days, all_shifts, all_skills):
+    for preference in preferences:
+        nurse_id = int(preference["nurse"].split("_")[1])
+        day_id = day_to_int[preference["day"]]
+        shift_id = shift_to_int[preference["shiftType"]]
 
-#     return 
+        if shift_id != shift_to_int["Any"]:
+            for week in all_weeks:
+                model.Add(unsatisfied_preferences[(nurse_id, day_id + week*7, shift_id)] == shifts[(nurse_id, day_id + week*7, shift_id)])
+        else:
+            for week in all_weeks:
+                shifts_worked = []
+                for shift in all_shifts:
+                    model.Add(unsatisfied_preferences[(nurse_id, day_id + week*7, shift)] == shifts[(nurse_id, day_id + week*7, shift)])
+    return
 
 def main():
 
@@ -142,6 +162,12 @@ def main():
         for s in all_shifts:
             for sk in all_skills:
                 insufficient_staffing[(d, s, sk)] = model.NewIntVar(0, 10, f"insufficient_staffing_d{d}_s{s}_sk{sk}")
+    
+    unsatisfied_preferences = {}
+    for n in all_nurses:
+        for d in all_days:
+            for s in all_shifts:
+                unsatisfied_preferences[(n, d, s)] = model.NewBoolVar(f"shift_n{n}_d{d}_s{s}")
 
     for req in wd_data["requirements"]:
         add_shift_skill_req(model, req, shifts, shifts_with_skills, insufficient_staffing, all_nurses, all_days, all_shifts, all_skills)
@@ -150,9 +176,11 @@ def main():
 
     add_missing_skill_req(model, sc_data["nurses"], shifts_with_skills, all_days, all_shifts, all_skills)
 
-    
+    add_insatisfied_preferences_reqs(model, wd_data["shiftOffRequests"], unsatisfied_preferences, shifts, all_nurses, all_days, all_shifts, all_skills)
 
-    model.Minimize( 30 * sum(insufficient_staffing[(d, s, sk)] for d in all_days for s in all_shifts for sk in all_skills))
+    model.Minimize( (30 * sum(insufficient_staffing[(d, s, sk)] for d in all_days for s in all_shifts for sk in all_skills))
+                   + (10 * sum(unsatisfied_preferences[(n, d, s)] for n in all_nurses for d in all_days for s in all_shifts))
+                   )
 
 
     # Try to distribute the shifts evenly, so that each nurse works
@@ -214,7 +242,7 @@ def main():
             return self._solution_count
 
     # Display the first five solutions.
-    solution_limit = 100
+    solution_limit = 1000
     solution_printer = NursesPartialSolutionPrinter(
         shifts, shifts_with_skills, num_nurses, num_days, num_shifts, solution_limit
     )
@@ -231,6 +259,41 @@ def main():
     print(f"  - solutions found: {solution_printer.solution_count()}")
     print(f"  - minimum of objective function: {solver.ObjectiveValue()}\n")
 
+    schedule_table = np.zeros([num_nurses, num_days * num_shifts]) 
+    legend = np.zeros([1, num_skills + 1])
+
+    for d in range(num_days):
+        # print(f"Day {d}")
+        for n in range(num_nurses):
+            is_working = False
+            for s in range(num_shifts):
+                for sk in range(num_skills):
+                    if solver.Value(shifts_with_skills[(n, d, s, sk)]) == 1:
+                        is_working = True
+                        schedule_table[n][d*num_shifts + s] = 1 - (0.2 * sk)
+                        # print(f"  Nurse {n} works shift {s} with skill {sk}")
+            # if not is_working:
+                # print(f"  Nurse {n} does not work")
+
+    for sk in range(num_skills):
+        legend[0][sk] = 1 - (0.2 * sk)
+
+    fig, (ax0, ax1) = plt.subplots(2, 1)
+    
+    c = ax0.pcolor(schedule_table) 
+    ax0.set_title('Schedule') 
+    ax0.set_xticks(np.arange(num_days*num_shifts))
+    ax0.set_xticklabels(np.arange(num_days*num_shifts) / 4)
+
+    ax0.xaxis.set_major_locator(ticker.MultipleLocator(4))
+
+    c = ax1.pcolor(legend, edgecolors='k', linewidths=5) 
+    ax1.set_title('Legend - skils') 
+    ax1.set_xticks(np.arange(num_skills + 1) + 0.5)
+    ax1.set_xticklabels([ "HeadNurse", "Nurse", "Caretaker", "Trainee", "Not working" ])
+    
+    fig.tight_layout() 
+    plt.show() 
 
 
 if __name__ == "__main__":
