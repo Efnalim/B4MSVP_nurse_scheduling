@@ -24,9 +24,37 @@ def load_data():
     f2 = open("testing\google\data\\n030w4\WD-n030w4-0.json")
     wd_data = json.load(f2)    
     f2.close()
-    return sc_data, wd_data
 
-def init_ilp_vars(model, all_nurses, all_days, all_shifts, all_skills):
+    # initialize constants
+    num_nurses = len(sc_data["nurses"])
+    num_shifts = len(sc_data["shiftTypes"])
+    num_skills = len(sc_data["skills"])
+    num_days = 28
+    all_nurses = range(num_nurses)
+    all_shifts = range(num_shifts)
+    all_days = range(num_days)
+    all_skills = range(num_skills)
+
+    constants = {}
+    constants["sc_data"] = sc_data
+    constants["wd_data"] = wd_data
+    constants["num_nurses"] = num_nurses
+    constants["num_shifts"] = num_shifts
+    constants["num_skills"] = num_skills
+    constants["num_days"] = num_days
+    constants["all_nurses"] = all_nurses
+    constants["all_shifts"] = all_shifts
+    constants["all_days"] = all_days
+    constants["all_skills"] = all_skills
+
+    return constants
+
+def init_ilp_vars(model, constants):
+    all_nurses = constants["all_nurses"]
+    all_shifts = constants["all_shifts"]
+    all_days = constants["all_days"]
+    all_skills = constants["all_skills"]
+
     # shifts[(n, d, s)]: nurse 'n' works shift 's' on day 'd'.
     shifts = {}
     for n in all_nurses:
@@ -49,9 +77,19 @@ def init_ilp_vars(model, all_nurses, all_days, all_shifts, all_skills):
             for sk in all_skills:
                 insufficient_staffing[(d, s, sk)] = model.NewIntVar(0, 10, f"insufficient_staffing_d{d}_s{s}_sk{sk}")
 
-    return shifts, shifts_with_skills, insufficient_staffing
+    basic_ILP_vars = {}
+    basic_ILP_vars["shifts"] = shifts
+    basic_ILP_vars["shifts_with_skills"] = shifts_with_skills
+    basic_ILP_vars["insufficient_staffing"] = insufficient_staffing
+    return basic_ILP_vars
 
-def init_ilp_vars_for_soft_constraints(model, shifts, all_nurses, all_days, all_shifts, all_skills, num_days):
+def init_ilp_vars_for_soft_constraints(model, basic_ILP_vars, constants):
+    all_nurses = constants["all_nurses"]
+    all_shifts = constants["all_shifts"]
+    all_days = constants["all_days"]
+    num_days = constants["num_days"]
+    shifts = basic_ILP_vars["shifts"]
+
     # Preferences for shifts off
     unsatisfied_preferences = {}
     for n in all_nurses:
@@ -100,9 +138,26 @@ def init_ilp_vars_for_soft_constraints(model, shifts, all_nurses, all_days, all_
         total_working_days_over_limit[(n)] = model.NewIntVar(0, 28, f"total_working_days_over_limit_n{n}")
         total_working_days_under_limit[(n)] = model.NewIntVar(0, 28, f"total_working_days_under_limit_n{n}")
 
-    return unsatisfied_preferences, total_working_days, working_weekends, total_working_weekends_over_limit, total_working_days_over_limit, total_working_days_under_limit, total_incomplete_weekends
+    soft_ILP_vars = {}
+    soft_ILP_vars["unsatisfied_preferences"] = unsatisfied_preferences
+    soft_ILP_vars["total_working_days"] = total_working_days
+    soft_ILP_vars["working_weekends"] = working_weekends
+    soft_ILP_vars["total_working_weekends_over_limit"] = total_working_weekends_over_limit
+    soft_ILP_vars["total_working_days_over_limit"] = total_working_days_over_limit
+    soft_ILP_vars["total_working_days_under_limit"] = total_working_days_under_limit
+    soft_ILP_vars["total_incomplete_weekends"] = total_incomplete_weekends
 
-def add_hard_constrains(model, shifts, shifts_with_skills, all_nurses, all_days, all_shifts, all_skills, sc_data, num_days):
+    return soft_ILP_vars
+
+def add_hard_constrains(model, basic_ILP_vars, constants):
+    all_nurses = constants["all_nurses"]
+    all_shifts = constants["all_shifts"]
+    all_days = constants["all_days"]
+    all_skills = constants["all_skills"]
+    num_days = constants["num_days"]
+    sc_data = constants["sc_data"]
+    shifts = basic_ILP_vars["shifts"]
+    shifts_with_skills = basic_ILP_vars["shifts_with_skills"]
     # Each nurse works at most one shift per day.
     for n in all_nurses:
         for d in all_days:
@@ -128,7 +183,22 @@ def add_hard_constrains(model, shifts, shifts_with_skills, all_nurses, all_days,
 
     return
 
-def add_soft_constraints(model, wd_data, sc_data, unsatisfied_preferences, total_working_days, total_working_weekends_over_limit, working_weekends, total_working_days_over_limit, total_working_days_under_limit, total_incomplete_weekends, shifts, all_nurses, all_days, all_shifts, all_skills):
+def add_soft_constraints(model, basic_ILP_vars, soft_ILP_vars, constants):
+    all_nurses = constants["all_nurses"]
+    all_days = constants["all_days"]
+    all_shifts = constants["all_shifts"]
+    all_skills = constants["all_skills"]
+    sc_data = constants["sc_data"]
+    wd_data = constants["wd_data"]
+    shifts = basic_ILP_vars["shifts"]
+    unsatisfied_preferences = soft_ILP_vars["unsatisfied_preferences"]
+    total_working_days = soft_ILP_vars["total_working_days"]
+    total_working_days_over_limit = soft_ILP_vars["total_working_days_over_limit"]
+    total_incomplete_weekends = soft_ILP_vars["total_incomplete_weekends"]
+    working_weekends = soft_ILP_vars["working_weekends"]
+    total_working_weekends_over_limit = soft_ILP_vars["total_working_weekends_over_limit"]
+    total_working_days_under_limit = soft_ILP_vars["total_working_days_under_limit"]
+    total_incomplete_weekends = soft_ILP_vars["total_incomplete_weekends"]
     
     add_insatisfied_preferences_reqs(model, wd_data["shiftOffRequests"], unsatisfied_preferences, shifts, all_nurses, all_days, all_shifts, all_skills)
 
@@ -172,7 +242,11 @@ def add_total_working_days_out_of_bounds_constraint(model, nurses_data, contract
         model.Add(total_working_days_under_limit[(n)] >= lower_limit - total_working_days[(n)])
     return 
 
-def add_shift_skill_req(model, req, shifts, shifts_with_skills, insufficient_staffing, all_nurses, all_days, all_shifts, all_skills):
+def add_shift_skill_req(model, req, basic_ILP_vars, soft_ILP_vars, constants):
+    all_nurses = constants["all_nurses"]
+    shifts_with_skills = basic_ILP_vars["shifts_with_skills"]
+    insufficient_staffing = basic_ILP_vars["insufficient_staffing"]
+
     shift = shift_to_int[req["shiftType"]]
     skill = skill_to_int[req["skill"]]
     minimal_capacities_in_week = [
@@ -262,7 +336,49 @@ def add_total_working_weekends_soft_constraints(model, nurses_data, contracts_da
         # model.Add(total_working_weekends_over_limit[(n)] >= -(sum(worked_weekends) - worked_weekends_limit))
     return
 
-def print_results(solver, solution_printer, num_nurses, num_days, num_shifts, num_skills, shifts_with_skills, total_working_weekends_over_limit, working_weekends):
+def setObjectiveFunction(model, basic_ILP_vars, soft_ILP_vars, constants):
+    all_nurses = constants["all_nurses"]
+    all_days = constants["all_days"]
+    all_shifts = constants["all_shifts"]
+    all_skills = constants["all_skills"]
+
+    insufficient_staffing = basic_ILP_vars["insufficient_staffing"]
+
+    unsatisfied_preferences = soft_ILP_vars["unsatisfied_preferences"]
+    total_working_days_over_limit = soft_ILP_vars["total_working_days_over_limit"]
+    total_incomplete_weekends = soft_ILP_vars["total_incomplete_weekends"]
+    total_working_weekends_over_limit = soft_ILP_vars["total_working_weekends_over_limit"]
+    total_working_days_under_limit = soft_ILP_vars["total_working_days_under_limit"]
+    total_incomplete_weekends = soft_ILP_vars["total_incomplete_weekends"]
+
+    model.Minimize( 
+                    (30 * sum(insufficient_staffing[(d, s, sk)] for d in all_days for s in all_shifts for sk in all_skills))
+                    + 
+                    (10 * sum(unsatisfied_preferences[(n, d, s)] for n in all_nurses for d in all_days for s in all_shifts))
+                    +
+                    (30 * sum(total_working_weekends_over_limit[(n)] for n in all_nurses))
+                    +
+                    (30 * sum(total_incomplete_weekends[(n)] for n in all_nurses))
+                    +
+                    (20 * sum(total_working_days_over_limit[(n)] for n in all_nurses))
+                    +
+                    (20 * sum(total_working_days_under_limit[(n)] for n in all_nurses))
+                )
+    return
+
+def print_results(solver, solution_printer, basic_ILP_vars, soft_ILP_vars, constants):
+    num_days = constants["num_days"]
+    num_nurses = constants["num_nurses"]
+    num_skills = constants["num_skills"]
+    num_shifts = constants["num_shifts"]
+
+    shifts_with_skills = basic_ILP_vars["shifts_with_skills"]
+
+    total_working_days = soft_ILP_vars["total_working_days"]
+    total_working_days_over_limit = soft_ILP_vars["total_working_days_over_limit"]
+    working_weekends = soft_ILP_vars["working_weekends"]
+    total_working_weekends_over_limit = soft_ILP_vars["total_working_weekends_over_limit"]
+
     # Statistics.
     print("\nStatistics")
     print(f"  - conflicts      : {solver.NumConflicts()}")
@@ -289,6 +405,7 @@ def print_results(solver, solution_printer, num_nurses, num_days, num_shifts, nu
     for n in range(num_nurses):
         print(f"  Nurse {n} works {solver.Value(total_working_weekends_over_limit[(n)])} weekends over limit")
         print(f"  Nurse {n} works {solver.Value(working_weekends[(n, 0)])} {solver.Value(working_weekends[(n, 1)])} {solver.Value(working_weekends[(n, 2)])} {solver.Value(working_weekends[(n, 3)])}")
+        print(f"  Nurse {n} works {solver.Value(total_working_days[(n)])} days in month, that is {solver.Value(total_working_days_over_limit[(n)])} over limit")
 
 
     for sk in range(num_skills):
@@ -314,49 +431,28 @@ def print_results(solver, solution_printer, num_nurses, num_days, num_shifts, nu
 
 def main():
 
-    # Loading Data
-    sc_data, wd_data = load_data()
-
-    # initialize constants
-    num_nurses = len(sc_data["nurses"])
-    num_shifts = len(sc_data["shiftTypes"])
-    num_skills = len(sc_data["skills"])
-    num_days = 28
-    all_nurses = range(num_nurses)
-    all_shifts = range(num_shifts)
-    all_days = range(num_days)
-    all_skills = range(num_skills)
+    # Loading Data and init constants
+    constants = load_data()
 
     # Creates the model.
     model = cp_model.CpModel()
 
     # Create ILP variables.
-    shifts, shifts_with_skills, insufficient_staffing = init_ilp_vars(model, all_nurses, all_days, all_shifts, all_skills)
+    # shifts, shifts_with_skills, insufficient_staffing = init_ilp_vars(model, all_nurses, all_days, all_shifts, all_skills)
+    basic_ILP_vars = init_ilp_vars(model, constants)
 
     # Add hard constrains to model
-    add_hard_constrains(model, shifts, shifts_with_skills, all_nurses, all_days, all_shifts, all_skills, sc_data, num_days)
+    add_hard_constrains(model, basic_ILP_vars, constants)
     
-    unsatisfied_preferences, total_working_days, working_weekends, total_working_weekends_over_limit, total_working_days_over_limit, total_working_days_under_limit, total_incomplete_weekends = init_ilp_vars_for_soft_constraints(model, shifts, all_nurses, all_days, all_shifts, all_skills, num_days)
+    soft_ILP_vars = init_ilp_vars_for_soft_constraints(model, basic_ILP_vars, constants)
 
-    for req in wd_data["requirements"]:
-        add_shift_skill_req(model, req, shifts, shifts_with_skills, insufficient_staffing, all_nurses, all_days, all_shifts, all_skills)
+    for req in constants["wd_data"]["requirements"]:
+        add_shift_skill_req(model, req, basic_ILP_vars, soft_ILP_vars, constants)
 
-    add_soft_constraints(model, wd_data, sc_data, unsatisfied_preferences, total_working_days, total_working_weekends_over_limit, working_weekends, total_working_days_over_limit, total_working_days_under_limit, total_incomplete_weekends, shifts, all_nurses, all_days, all_shifts, all_skills)
+    add_soft_constraints(model, basic_ILP_vars, soft_ILP_vars, constants)
 
     # Sets objective function
-    model.Minimize( 
-                    (30 * sum(insufficient_staffing[(d, s, sk)] for d in all_days for s in all_shifts for sk in all_skills))
-                    + 
-                    (10 * sum(unsatisfied_preferences[(n, d, s)] for n in all_nurses for d in all_days for s in all_shifts))
-                    +
-                    (30 * sum(total_working_weekends_over_limit[(n)] for n in all_nurses))
-                    +
-                    (30 * sum(total_incomplete_weekends[(n)] for n in all_nurses))
-                    +
-                    (20 * sum(total_working_days_over_limit[(n)] for n in all_nurses))
-                    +
-                    (20 * sum(total_working_days_under_limit[(n)] for n in all_nurses))
-                )
+    setObjectiveFunction(model, basic_ILP_vars, soft_ILP_vars, constants)
 
     # Creates the solver and solve.
     solver = cp_model.CpSolver()
@@ -367,19 +463,19 @@ def main():
     class NursesPartialSolutionPrinter(cp_model.CpSolverSolutionCallback):
         """Print intermediate solutions."""
 
-        def __init__(self, shifts, shifts_with_skills, num_nurses, num_days, num_shifts, limit):
+        def __init__(self, basic_ILP_vars, soft_ILP_vars, constants, solution_limit):
             cp_model.CpSolverSolutionCallback.__init__(self)
-            self._shifts = shifts
-            self._shifts_with_skills = shifts_with_skills
-            self._num_nurses = num_nurses
-            self._num_days = num_days
-            self._num_shifts = num_shifts
+            self._shifts = basic_ILP_vars["shifts"]
+            self._shifts_with_skills = basic_ILP_vars["shifts_with_skills"]
+            self._num_nurses = constants["num_nurses"]
+            self._num_days = constants["num_days"]
+            self._num_shifts = constants["num_shifts"]
             self._solution_count = 0
-            self._solution_limit = limit
+            self._solution_limit = solution_limit
 
         def on_solution_callback(self):
             self._solution_count += 1
-            print(f"Solution {self._solution_count} with value: {self.ObjectiveValue()}")   
+            print(f"Solution {self._solution_count} with value: {self.ObjectiveValue()} and time: {self.WallTime()} s")   
             # for d in range(self._num_days):
             #     print(f"Day {d}")
             #     for n in range(self._num_nurses):
@@ -399,16 +495,14 @@ def main():
             return self._solution_count
 
     # Display the first five solutions.
-    solution_limit = 10
-    solution_printer = NursesPartialSolutionPrinter(
-        shifts, shifts_with_skills, num_nurses, num_days, num_shifts, solution_limit
-    )
+    solution_limit = 50
+    solution_printer = NursesPartialSolutionPrinter(basic_ILP_vars, soft_ILP_vars, constants, solution_limit)
 
-    solver.parameters.max_time_in_seconds = 960.0
+    solver.parameters.max_time_in_seconds = 3960.0
     # solver.parameters.max_time_in_seconds = 180.0
     solver.Solve(model, solution_printer)
 
-    print_results(solver, solution_printer, num_nurses, num_days, num_shifts, num_skills, shifts_with_skills, total_working_weekends_over_limit, working_weekends)
+    print_results(solver, solution_printer, basic_ILP_vars, soft_ILP_vars, constants)
 
 if __name__ == "__main__":
     main()
