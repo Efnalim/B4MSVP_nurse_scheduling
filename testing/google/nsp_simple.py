@@ -89,6 +89,8 @@ def init_ilp_vars_for_soft_constraints(model, basic_ILP_vars, constants):
     all_days = constants["all_days"]
     num_days = constants["num_days"]
     shifts = basic_ILP_vars["shifts"]
+    wd_data = constants["wd_data"]
+    sc_data = constants["sc_data"]
 
     # Preferences for shifts off
     unsatisfied_preferences = {}
@@ -135,8 +137,44 @@ def init_ilp_vars_for_soft_constraints(model, basic_ILP_vars, constants):
     total_working_days_over_limit = {}
     total_working_days_under_limit = {}
     for n in all_nurses:
-        total_working_days_over_limit[(n)] = model.NewIntVar(0, 28, f"total_working_days_over_limit_n{n}")
-        total_working_days_under_limit[(n)] = model.NewIntVar(0, 28, f"total_working_days_under_limit_n{n}")
+        total_working_days_over_limit[(n)] = model.NewIntVar(0, num_days, f"total_working_days_over_limit_n{n}")
+        total_working_days_under_limit[(n)] = model.NewIntVar(0, num_days, f"total_working_days_under_limit_n{n}")
+
+    violations_of_max_consecutive_working_days = {}
+    violations_of_max_consecutive_working_days_for_nurse = {}
+    for n in all_nurses:
+        violations_of_max_consecutive_working_days_for_nurse[(n)] = model.NewIntVar(0, num_days, f"violations_of_max_consecutive_working_days_for_nurse{n}")
+        all_violation_for_nurse = []
+        max_consecutive_working_days = sc_data["contracts"][contract_to_int[sc_data["nurses"][n]["contract"]]]["maximumNumberOfConsecutiveWorkingDays"]
+        for d in all_days:
+            if d + max_consecutive_working_days >= num_days:
+                break
+            violations_of_max_consecutive_working_days[(n, d + max_consecutive_working_days)] = model.NewBoolVar(f"violations_of_max_consecutive_working_days_n{n}_d{d + max_consecutive_working_days}")
+            all_violation_for_nurse.append(violations_of_max_consecutive_working_days[(n, d + max_consecutive_working_days)])
+            working_days_to_sum = []
+            for dd in range(max_consecutive_working_days + 1):
+                for s in all_shifts:
+                    working_days_to_sum.append(shifts[(n, d + dd, s)])
+            model.Add(violations_of_max_consecutive_working_days[(n, d + max_consecutive_working_days)] >= (sum(working_days_to_sum) - max_consecutive_working_days))
+        model.Add(violations_of_max_consecutive_working_days_for_nurse[(n)] == sum(all_violation_for_nurse))
+
+    violations_of_max_consecutive_days_off = {}
+    violations_of_max_consecutive_days_off_for_nurse = {}
+    for n in all_nurses:
+        violations_of_max_consecutive_days_off_for_nurse[(n)] = model.NewIntVar(0, num_days, f"violations_of_max_consecutive_days_off_for_nurse{n}")
+        all_violation_for_nurse = []
+        max_consecutive_days_off = sc_data["contracts"][contract_to_int[sc_data["nurses"][n]["contract"]]]["maximumNumberOfConsecutiveDaysOff"]
+        for d in all_days:
+            if d + max_consecutive_days_off >= num_days:
+                break
+            violations_of_max_consecutive_days_off[(n, d + max_consecutive_days_off)] = model.NewBoolVar(f"violations_of_max_consecutive_days_off_n{n}_d{d + max_consecutive_working_days}")
+            all_violation_for_nurse.append(violations_of_max_consecutive_days_off[(n, d + max_consecutive_days_off)])
+            days_off_to_sum = []
+            for dd in range(max_consecutive_days_off + 1):
+                for s in all_shifts:
+                    days_off_to_sum.append(shifts[(n, d + dd, s)])
+            model.Add(violations_of_max_consecutive_days_off[(n, d + max_consecutive_days_off)] >= 1 - (sum(days_off_to_sum)))
+        model.Add(violations_of_max_consecutive_days_off_for_nurse[(n)] == sum(all_violation_for_nurse))
 
     soft_ILP_vars = {}
     soft_ILP_vars["unsatisfied_preferences"] = unsatisfied_preferences
@@ -146,6 +184,8 @@ def init_ilp_vars_for_soft_constraints(model, basic_ILP_vars, constants):
     soft_ILP_vars["total_working_days_over_limit"] = total_working_days_over_limit
     soft_ILP_vars["total_working_days_under_limit"] = total_working_days_under_limit
     soft_ILP_vars["total_incomplete_weekends"] = total_incomplete_weekends
+    soft_ILP_vars["violations_of_max_consecutive_working_days_for_nurse"] = violations_of_max_consecutive_working_days_for_nurse
+    soft_ILP_vars["violations_of_max_consecutive_days_off_for_nurse"] = violations_of_max_consecutive_days_off_for_nurse
 
     return soft_ILP_vars
 
@@ -350,6 +390,8 @@ def setObjectiveFunction(model, basic_ILP_vars, soft_ILP_vars, constants):
     total_working_weekends_over_limit = soft_ILP_vars["total_working_weekends_over_limit"]
     total_working_days_under_limit = soft_ILP_vars["total_working_days_under_limit"]
     total_incomplete_weekends = soft_ILP_vars["total_incomplete_weekends"]
+    violations_of_max_consecutive_working_days_for_nurse = soft_ILP_vars["violations_of_max_consecutive_working_days_for_nurse"]
+    violations_of_max_consecutive_days_off_for_nurse = soft_ILP_vars["violations_of_max_consecutive_days_off_for_nurse"]
 
     model.Minimize( 
                     (30 * sum(insufficient_staffing[(d, s, sk)] for d in all_days for s in all_shifts for sk in all_skills))
@@ -363,6 +405,10 @@ def setObjectiveFunction(model, basic_ILP_vars, soft_ILP_vars, constants):
                     (20 * sum(total_working_days_over_limit[(n)] for n in all_nurses))
                     +
                     (20 * sum(total_working_days_under_limit[(n)] for n in all_nurses))
+                    +
+                    (30 * sum(violations_of_max_consecutive_working_days_for_nurse[(n)] for n in all_nurses))
+                    +
+                    (30 * sum(violations_of_max_consecutive_days_off_for_nurse[(n)] for n in all_nurses))
                 )
     return
 
@@ -378,6 +424,8 @@ def print_results(solver, solution_printer, basic_ILP_vars, soft_ILP_vars, const
     total_working_days_over_limit = soft_ILP_vars["total_working_days_over_limit"]
     working_weekends = soft_ILP_vars["working_weekends"]
     total_working_weekends_over_limit = soft_ILP_vars["total_working_weekends_over_limit"]
+    violations_of_max_consecutive_days_off_for_nurse = soft_ILP_vars["violations_of_max_consecutive_days_off_for_nurse"]
+    violations_of_max_consecutive_working_days_for_nurse = soft_ILP_vars["violations_of_max_consecutive_working_days_for_nurse"]
 
     # Statistics.
     print("\nStatistics")
@@ -406,6 +454,8 @@ def print_results(solver, solution_printer, basic_ILP_vars, soft_ILP_vars, const
         print(f"  Nurse {n} works {solver.Value(total_working_weekends_over_limit[(n)])} weekends over limit")
         print(f"  Nurse {n} works {solver.Value(working_weekends[(n, 0)])} {solver.Value(working_weekends[(n, 1)])} {solver.Value(working_weekends[(n, 2)])} {solver.Value(working_weekends[(n, 3)])}")
         print(f"  Nurse {n} works {solver.Value(total_working_days[(n)])} days in month, that is {solver.Value(total_working_days_over_limit[(n)])} over limit")
+        print(f"  Nurse {n} has {solver.Value(violations_of_max_consecutive_days_off_for_nurse[(n)])} consecutive days off over limit")
+        print(f"  Nurse {n} works {solver.Value(violations_of_max_consecutive_working_days_for_nurse[(n)])} consecutive days over limit")
 
 
     for sk in range(num_skills):
@@ -421,7 +471,7 @@ def print_results(solver, solution_printer, basic_ILP_vars, soft_ILP_vars, const
     ax0.xaxis.set_major_locator(ticker.MultipleLocator(4))
 
     c = ax1.pcolor(legend, edgecolors='k', linewidths=5) 
-    ax1.set_title('Legend - skils') 
+    ax1.set_title('Legend - skills') 
     ax1.set_xticks(np.arange(num_skills + 1) + 0.5)
     ax1.set_xticklabels([ "HeadNurse", "Nurse", "Caretaker", "Trainee", "Not working" ])
     
@@ -495,11 +545,11 @@ def main():
             return self._solution_count
 
     # Display the first five solutions.
-    solution_limit = 50
+    solution_limit = 500
     solution_printer = NursesPartialSolutionPrinter(basic_ILP_vars, soft_ILP_vars, constants, solution_limit)
 
-    solver.parameters.max_time_in_seconds = 3960.0
-    # solver.parameters.max_time_in_seconds = 180.0
+    # solver.parameters.max_time_in_seconds = 3960.0
+    solver.parameters.max_time_in_seconds = 1800.0
     solver.Solve(model, solution_printer)
 
     print_results(solver, solution_printer, basic_ILP_vars, soft_ILP_vars, constants)
