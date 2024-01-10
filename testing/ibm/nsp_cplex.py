@@ -7,7 +7,7 @@ import math
 
 import cplex
 
-shift_to_int = {"Early": 0, "Day": 1, "Late": 2, "Night": 3, "Any": 4}
+shift_to_int = {"Early": 0, "Day": 1, "Late": 2, "Night": 3, "Any": 4, "None": 5}
 skill_to_int = {"HeadNurse": 0, "Nurse": 1, "Caretaker": 2, "Trainee": 3}
 contract_to_int = {"FullTime": 0, "PartTime": 1, "HalfTime": 2}
 day_to_int = {"Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3, "Friday": 4, "Saturday": 5, "Sunday": 6}
@@ -70,25 +70,42 @@ def init_ilp_vars(model, constants):
     # basic_ILP_vars["insufficient_staffing"] = insufficient_staffing
     return basic_ILP_vars
 
-def add_shift_succession_reqs(model, shifts, all_nurses, all_days, all_shifts, num_days):
+def add_shift_succession_reqs(model, shifts, all_nurses, all_days, all_shifts, num_days, constants):
     for n in all_nurses:
+        last_shift = shift_to_int[constants["h0_data"]["nurseHistory"][n]["lastAssignedShiftType"]]
+        if(last_shift == 1):
+            model.linear_constraints.add(
+                lin_expr=[cplex.SparsePair([shifts[n][0][last_shift - 1]], [1])],
+                senses=["E"],
+                rhs=[0])
+        if(last_shift == 2):
+            model.linear_constraints.add(
+                lin_expr=[cplex.SparsePair([shifts[n][0][last_shift - 1], shifts[n][0][last_shift - 2]], [1] * 2)],
+                senses=["E"],
+                rhs=[0])
+        if(last_shift == 3):
+            model.linear_constraints.add(
+                lin_expr=[cplex.SparsePair([shifts[n][0][last_shift - 1], shifts[n][0][last_shift - 2], shifts[n][0][last_shift - 3]], [1] * 3)],
+                senses=["E"],
+                rhs=[0])
+
         for d in range(num_days - 1):
             for s in all_shifts:
                 if(s == 1):
                     model.linear_constraints.add(
-                    lin_expr=[cplex.SparsePair([shifts[n][d][s], shifts[n][d + 1][s - 1]], [1] * 2)],
-                    senses=["L"],
-                    rhs=[1])
+                        lin_expr=[cplex.SparsePair([shifts[n][d][s], shifts[n][d + 1][s - 1]], [1] * 2)],
+                        senses=["L"],
+                        rhs=[1])
                 if(s == 2):
                     model.linear_constraints.add(
-                    lin_expr=[cplex.SparsePair([shifts[n][d][s], shifts[n][d + 1][s - 1], shifts[n][d + 1][s - 2]], [1] * 3)],
-                    senses=["L"],
-                    rhs=[1])
+                        lin_expr=[cplex.SparsePair([shifts[n][d][s], shifts[n][d + 1][s - 1], shifts[n][d + 1][s - 2]], [1] * 3)],
+                        senses=["L"],
+                        rhs=[1])
                 if(s == 3):
                     model.linear_constraints.add(
-                    lin_expr=[cplex.SparsePair([shifts[n][d][s], shifts[n][d + 1][s - 1], shifts[n][d + 1][s - 2], shifts[n][d + 1][s - 3]], [1] * 4)],
-                    senses=["L"],
-                    rhs=[1])
+                        lin_expr=[cplex.SparsePair([shifts[n][d][s], shifts[n][d + 1][s - 1], shifts[n][d + 1][s - 2], shifts[n][d + 1][s - 3]], [1] * 4)],
+                        senses=["L"],
+                        rhs=[1])
 
 def add_missing_skill_req(model, nurses_data, shifts_with_skills, all_days, all_shifts, all_skills):
     for n, nurse_data in enumerate(nurses_data):
@@ -153,7 +170,7 @@ def add_hard_constrains(model, basic_ILP_vars, constants):
             senses=["E"],
             rhs=[0])
 
-    add_shift_succession_reqs(model, shifts, all_nurses, all_days, all_shifts, num_days)
+    add_shift_succession_reqs(model, shifts, all_nurses, all_days, all_shifts, num_days, constants)
     add_missing_skill_req(model, sc_data["nurses"], shifts_with_skills, all_days, all_shifts, all_skills)
 
     for req in wd_data["requirements"]:
@@ -276,14 +293,6 @@ def init_ilp_vars_for_soft_constraints(model, basic_ILP_vars, constants):
 
     vars_to_add = []
     violations_of_max_consecutive_working_days = {}
-    # total_violations_of_max_consecutive_working_days_in_week = {}
-    # for n in all_nurses:
-    #     var_name = f"total_violations_of_max_consecutive_working_days_in_week_n{n}"
-    #     vars_to_add.append(var_name)
-    #     total_violations_of_max_consecutive_working_days_in_week[(n)] = var_name
-    # model.variables.add(names=vars_to_add, lb=[0] * len(vars_to_add), ub=[7] * len(vars_to_add), types=["N"] * len(vars_to_add))
-
-    vars_to_add = []
     for n in all_nurses:
         for d in all_days:
             var_name = f"violations_of_max_consecutive_working_days_n{n}_d{d}"
@@ -291,58 +300,24 @@ def init_ilp_vars_for_soft_constraints(model, basic_ILP_vars, constants):
             violations_of_max_consecutive_working_days[(n, d)] = var_name
     model.variables.add(names=vars_to_add, lb=[0] * len(vars_to_add), ub=[1] * len(vars_to_add), types=["B"] * len(vars_to_add))
     
-    #     violations_of_max_consecutive_working_days_from_prev_week = {}
-    #     prev_week_consecutive_working_days = history_data["nurseHistory"][n]["numberOfConsecutiveWorkingDays"]
-    #     if prev_week_consecutive_working_days > 0:
-    #         for d in range(max_consecutive_working_days):
-    #             if prev_week_consecutive_working_days - d == 0:
-    #                 break
-
-    #             violations_of_max_consecutive_working_days_from_prev_week[(n, d)] = model.NewBoolVar(f"violations_of_max_consecutive_working_days_from_prev_week{n}_d{d}")
-    #             all_violation_for_nurse.append(violations_of_max_consecutive_working_days_from_prev_week[(n, d)])
-                
-    #             working_days_to_sum = []
-    #             for dd in range(max_consecutive_working_days - d):
-    #                 working_days_to_sum.append(working_days[(n, d)])
-    #             model.Add(violations_of_max_consecutive_working_days_from_prev_week[(n, d)] >= (sum(working_days_to_sum) + d + 1 - max_consecutive_working_days))
-
-    #     model.Add(violations_of_max_consecutive_working_days_for_nurse[(n)] == sum(all_violation_for_nurse))
+    vars_to_add = []
+    violations_of_max_consecutive_working_shifts = {}
+    for n in all_nurses:
+        for d in all_days:
+            for s in all_shifts:
+                var_name = f"violations_of_max_consecutive_working_shifts_n{n}_d{d}_s{s}"
+                violations_of_max_consecutive_working_shifts[(n, d, s)] = var_name
+                vars_to_add.append(var_name)
+    model.variables.add(names=vars_to_add, lb=[0] * len(vars_to_add), ub=[1] * len(vars_to_add), types=["B"] * len(vars_to_add))
     
-    # violations_of_max_consecutive_working_shifts = {}
-    # violations_of_max_consecutive_working_shifts_for_nurse_for_shift_type = {}
-    # for n in all_nurses:
-    #     for s in all_shifts:
-    #         violations_of_max_consecutive_working_shifts_for_nurse_for_shift_type[(n, s)] = model.NewIntVar(0, num_days, f"violations_of_max_consecutive_working_shifts_for_nurse_for_shift_type_n{n}_s{s}")
-    #         all_violation_for_nurse_for_shift_type = []
-    #         max_consecutive_working_shifts = sc_data["shiftTypes"][s]["maximumNumberOfConsecutiveAssignments"]
-    #         for d in all_days:
-    #             if d + max_consecutive_working_shifts >= num_days:
-    #                 break
-    #             violations_of_max_consecutive_working_shifts[(n, s, d + max_consecutive_working_shifts)] = model.NewBoolVar(f"violations_of_max_consecutive_working_shifts_n{n}_s{s}_d{d + max_consecutive_working_shifts}")
-    #             all_violation_for_nurse_for_shift_type.append(violations_of_max_consecutive_working_shifts[(n, s, d + max_consecutive_working_shifts)])
-    #             working_shifts_to_sum = []
-    #             for dd in range(max_consecutive_working_shifts + 1):
-    #                 working_shifts_to_sum.append(shifts[(n, d + dd, s)])
-    #             model.Add(violations_of_max_consecutive_working_shifts[(n, s, d + max_consecutive_working_shifts)] >= (sum(working_shifts_to_sum) - max_consecutive_working_shifts))
-    #         model.Add(violations_of_max_consecutive_working_shifts_for_nurse_for_shift_type[(n, s)] == sum(all_violation_for_nurse_for_shift_type))
-
-    # violations_of_max_consecutive_days_off = {}
-    # violations_of_max_consecutive_days_off_for_nurse = {}
-    # for n in all_nurses:
-    #     violations_of_max_consecutive_days_off_for_nurse[(n)] = model.NewIntVar(0, num_days, f"violations_of_max_consecutive_days_off_for_nurse{n}")
-    #     all_violation_for_nurse = []
-    #     max_consecutive_days_off = sc_data["contracts"][contract_to_int[sc_data["nurses"][n]["contract"]]]["maximumNumberOfConsecutiveDaysOff"]
-    #     for d in all_days:
-    #         if d + max_consecutive_days_off >= num_days:
-    #             break
-    #         violations_of_max_consecutive_days_off[(n, d + max_consecutive_days_off)] = model.NewBoolVar(f"violations_of_max_consecutive_days_off_n{n}_d{d + max_consecutive_working_days}")
-    #         all_violation_for_nurse.append(violations_of_max_consecutive_days_off[(n, d + max_consecutive_days_off)])
-    #         days_off_to_sum = []
-    #         for dd in range(max_consecutive_days_off + 1):
-    #             for s in all_shifts:
-    #                 days_off_to_sum.append(shifts[(n, d + dd, s)])
-    #         model.Add(violations_of_max_consecutive_days_off[(n, d + max_consecutive_days_off)] >= 1 - (sum(days_off_to_sum)))
-    #     model.Add(violations_of_max_consecutive_days_off_for_nurse[(n)] == sum(all_violation_for_nurse))
+    vars_to_add = []
+    violations_of_max_consecutive_days_off = {}
+    for n in all_nurses:
+        for d in all_days:
+            var_name = f"violations_of_max_consecutive_days_off_n{n}_d{d}"
+            vars_to_add.append(var_name)
+            violations_of_max_consecutive_days_off[(n, d)] = var_name
+    model.variables.add(names=vars_to_add, lb=[0] * len(vars_to_add), ub=[1] * len(vars_to_add), types=["B"] * len(vars_to_add))
 
     soft_ILP_vars = {}
     soft_ILP_vars["insufficient_staffing"] = insufficient_staffing
@@ -354,8 +329,8 @@ def init_ilp_vars_for_soft_constraints(model, basic_ILP_vars, constants):
     soft_ILP_vars["total_working_days_under_limit"] = total_working_days_under_limit
     soft_ILP_vars["incomplete_weekends"] = incomplete_weekends
     soft_ILP_vars["violations_of_max_consecutive_working_days"] = violations_of_max_consecutive_working_days
-    # soft_ILP_vars["violations_of_max_consecutive_days_off_for_nurse"] = violations_of_max_consecutive_days_off_for_nurse
-    # soft_ILP_vars["violations_of_max_consecutive_working_shifts_for_nurse_for_shift_type"] = violations_of_max_consecutive_working_shifts_for_nurse_for_shift_type
+    soft_ILP_vars["violations_of_max_consecutive_days_off"] = violations_of_max_consecutive_days_off
+    soft_ILP_vars["violations_of_max_consecutive_working_shifts"] = violations_of_max_consecutive_working_shifts
 
     return soft_ILP_vars
 
@@ -489,11 +464,11 @@ def add_max_consecutive_work_days_constraint(model, basic_ILP_vars, soft_ILP_var
     violations_of_max_consecutive_working_days = soft_ILP_vars["violations_of_max_consecutive_working_days"]
     all_nurses = constants["all_nurses"]
     all_days = constants["all_days"]
-    num_days = constants["num_days"]
     sc_data = constants["sc_data"]
     working_days = basic_ILP_vars["working_days"]
 
     for n in all_nurses:
+        consecutive_working_days_prev_week = constants["h0_data"]["nurseHistory"][n]["numberOfConsecutiveWorkingDays"]
         max_consecutive_working_days = sc_data["contracts"][contract_to_int[sc_data["nurses"][n]["contract"]]]["maximumNumberOfConsecutiveWorkingDays"]
         for d in all_days:
             if d > max_consecutive_working_days:
@@ -501,12 +476,63 @@ def add_max_consecutive_work_days_constraint(model, basic_ILP_vars, soft_ILP_var
                     lin_expr=[cplex.SparsePair([violations_of_max_consecutive_working_days[(n, d)]] + working_days[n][d - max_consecutive_working_days: d + 1], [-1] + [1] * (max_consecutive_working_days + 1))],
                     senses=["L"],
                     rhs=[max_consecutive_working_days])
-            # working_days_to_sum = []
-            # for dd in range(max_consecutive_working_days + 1):
-            #     working_days_to_sum.append(working_days[n][d - dd]])
-            # model.Add(violations_of_max_consecutive_working_days[(n, d + max_consecutive_working_days)] >= (sum(working_days_to_sum) - max_consecutive_working_days))
-    
+            else:
+                if consecutive_working_days_prev_week >= max_consecutive_working_days - d:
+                    model.linear_constraints.add(
+                        lin_expr=[cplex.SparsePair([violations_of_max_consecutive_working_days[(n, d)]] + working_days[n][0: d + 1], [-1] + [1] * (d + 1))],
+                        senses=["L"],
+                        rhs=[d])
 
+
+def add_max_consecutive_work_shifts_constraint(model, basic_ILP_vars, soft_ILP_vars, constants):
+    violations_of_max_consecutive_working_shifts = soft_ILP_vars["violations_of_max_consecutive_working_shifts"]
+    all_nurses = constants["all_nurses"]
+    all_days = constants["all_days"]
+    all_shifts = constants["all_shifts"]
+    sc_data = constants["sc_data"]
+    shifts = basic_ILP_vars["shifts"]
+
+    for n in all_nurses:
+        last_shift = shift_to_int[constants["h0_data"]["nurseHistory"][n]["lastAssignedShiftType"]]
+        consecutive_shifts_prev_week = constants["h0_data"]["nurseHistory"][n]["numberOfConsecutiveAssignments"]
+        for s in all_shifts:
+            max_consecutive_working_shifts = sc_data["shiftTypes"][s]["maximumNumberOfConsecutiveAssignments"]
+            for d in all_days:
+                if d > max_consecutive_working_shifts:
+                    model.linear_constraints.add(
+                        lin_expr=[cplex.SparsePair([violations_of_max_consecutive_working_shifts[(n, d, s)]] + (shifts[n][d - dd][s] for dd in range(1 + max_consecutive_working_shifts)), [-1] + [1] * (max_consecutive_working_shifts + 1))],
+                        senses=["L"],
+                        rhs=[max_consecutive_working_shifts])
+                else:
+                    if (last_shift == s) and (consecutive_shifts_prev_week >= max_consecutive_working_shifts - d):
+                        model.linear_constraints.add(
+                            lin_expr=[cplex.SparsePair([violations_of_max_consecutive_working_shifts[(n, d, s)]] + (shifts[n][dd][s] for dd in range(d + 1)), [-1] + [1] * (d + 1))],
+                            senses=["L"],
+                            rhs=[d])
+                    
+def add_max_consecutive_days_off_constraint(model, basic_ILP_vars, soft_ILP_vars, constants):
+    violations_of_max_consecutive_days_off = soft_ILP_vars["violations_of_max_consecutive_days_off"]
+    all_nurses = constants["all_nurses"]
+    all_days = constants["all_days"]
+    sc_data = constants["sc_data"]
+    working_days = basic_ILP_vars["working_days"]
+
+    for n in all_nurses:
+        consecutive_days_off_prev_week = constants["h0_data"]["nurseHistory"][n]["numberOfConsecutiveDaysOff"]
+        max_consecutive_working_days = sc_data["contracts"][contract_to_int[sc_data["nurses"][n]["contract"]]]["maximumNumberOfConsecutiveDaysOff"]
+        for d in all_days:
+            if d > max_consecutive_working_days:
+                model.linear_constraints.add(
+                    lin_expr=[cplex.SparsePair([violations_of_max_consecutive_days_off[(n, d)]] + working_days[n][d - max_consecutive_working_days: d + 1], [1] + [1] * (max_consecutive_working_days + 1))],
+                    senses=["G"],
+                    rhs=[1])
+            else:
+                if consecutive_days_off_prev_week >= max_consecutive_working_days - d:
+                    model.linear_constraints.add(
+                        lin_expr=[cplex.SparsePair([violations_of_max_consecutive_days_off[(n, d)]] + working_days[n][0: d + 1], [1] + [1] * (d + 1))],
+                        senses=["G"],
+                        rhs=[1])
+                    
 def add_soft_constraints(model, basic_ILP_vars, soft_ILP_vars, constants, week_number):
     wd_data = constants["wd_data"]
 
@@ -522,6 +548,8 @@ def add_soft_constraints(model, basic_ILP_vars, soft_ILP_vars, constants, week_n
     add_incomplete_weekends_constraint(model, basic_ILP_vars, soft_ILP_vars, constants)
 
     add_max_consecutive_work_days_constraint(model, basic_ILP_vars, soft_ILP_vars, constants)
+
+    add_max_consecutive_days_off_constraint(model, basic_ILP_vars, soft_ILP_vars, constants)
     
     return 
 
@@ -601,6 +629,8 @@ def set_objective_function(c, constants, basic_ILP_vars, soft_ILP_vars):
     total_working_days_over_limit = soft_ILP_vars["total_working_days_over_limit"]
     total_working_days_under_limit = soft_ILP_vars["total_working_days_under_limit"]
     violations_of_max_consecutive_working_days = soft_ILP_vars["violations_of_max_consecutive_working_days"]
+    violations_of_max_consecutive_working_shifts = soft_ILP_vars["violations_of_max_consecutive_working_shifts"]
+    violations_of_max_consecutive_days_off = soft_ILP_vars["violations_of_max_consecutive_days_off"]
 
     c.objective.set_linear(list(itertools.chain.from_iterable([
         zip((insufficient_staffing[(d, s, sk)] for d in all_days for s in all_shifts for sk in all_skills), 
@@ -623,6 +653,12 @@ def set_objective_function(c, constants, basic_ILP_vars, soft_ILP_vars):
         ,
         zip((violations_of_max_consecutive_working_days[(n, d)] for n in all_nurses for d in all_days),
             [30] * num_nurses) 
+        ,
+        zip((violations_of_max_consecutive_days_off[(n, d)] for n in all_nurses for d in all_days),
+            [30] * num_nurses) 
+        ,
+        zip((violations_of_max_consecutive_working_shifts[(n, d, s)] for n in all_nurses for d in all_days for s in all_shifts),
+            [15] * num_nurses) 
     ])))
 
     return

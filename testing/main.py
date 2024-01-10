@@ -95,7 +95,7 @@ def display_schedule(results, constants, number_weeks):
     fig.tight_layout() 
     plt.show() 
 
-def main(time_limit_for_week, number_weeks: int, history_data_file_id: int, week_data_files_ids: list):
+def main(time_limit_for_week, mode, number_weeks: int, history_data_file_id: int, week_data_files_ids: list):
     # Loading Data and init constants
     constants = load_data(number_weeks, history_data_file_id, week_data_files_ids)
 
@@ -103,8 +103,10 @@ def main(time_limit_for_week, number_weeks: int, history_data_file_id: int, week
     results = {}
     for week_number in range(number_weeks):
         constants["wd_data"] = constants["all_wd_data"][week_number]
-        # compute_one_week_or_tools(time_limit_for_week, week_number, constants, results)
-        compute_one_week_cplex(time_limit_for_week, week_number, constants, results)
+        if(mode == 0):
+            compute_one_week_cplex(time_limit_for_week, week_number, constants, results)
+        else:
+            compute_one_week_or_tools(time_limit_for_week, week_number, constants, results)
 
     # display results
     display_schedule(results, constants, number_weeks)
@@ -112,7 +114,8 @@ def main(time_limit_for_week, number_weeks: int, history_data_file_id: int, week
 
 if __name__ == "__main__":
     time_limit_for_week = int(sys.argv[1])
-    number_weeks = int(sys.argv[2])
-    history_data_file_id = int(sys.argv[3])
-    week_data_files_ids = list(map(int, (sys.argv[4:])))
-    main(time_limit_for_week, number_weeks, history_data_file_id, week_data_files_ids)
+    mode = int(sys.argv[2])
+    number_weeks = int(sys.argv[3])
+    history_data_file_id = int(sys.argv[4])
+    week_data_files_ids = list(map(int, (sys.argv[5:])))
+    main(time_limit_for_week, mode, number_weeks, history_data_file_id, week_data_files_ids)
