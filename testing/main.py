@@ -50,6 +50,7 @@ def load_data(number_weeks: int, history_data_file_id: int, week_data_files_ids:
     constants["num_shifts"] = num_shifts
     constants["num_skills"] = num_skills
     constants["num_days"] = num_days
+    constants["num_weeks"] = number_weeks
     constants["all_nurses"] = all_nurses
     constants["all_shifts"] = all_shifts
     constants["all_days"] = all_days
