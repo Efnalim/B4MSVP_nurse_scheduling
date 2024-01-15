@@ -18,7 +18,8 @@ def load_data(number_weeks: int, history_data_file_id: int, week_data_files_ids:
     h0_data = json.load(f0)
     f0.close()
 
-    file_name = "google\data\hidden-JSON\Sc-n035w" + str(number_weeks) + ".json"
+    # file_name = "google\data\hidden-JSON\Sc-n035w" + str(number_weeks) + ".json"
+    file_name = "google\data\hidden-JSON\Sc-n035w4.json"
     f1 = open(file_name)
     sc_data = json.load(f1)
     f1.close()
@@ -110,7 +111,11 @@ def main(time_limit_for_week, mode, number_weeks: int, history_data_file_id: int
 
     # display results
     display_schedule(results, constants, number_weeks)
-    # print(json.dumps(constants["h0_data"], indent=4))
+    print("----------------------------------------------------------------")
+    for week_number in range(number_weeks):
+        print(results[(week_number, "status")])
+        print(results[(week_number, "value")])
+        print("----------------------------------------------------------------")
 
 if __name__ == "__main__":
     time_limit_for_week = int(sys.argv[1])
