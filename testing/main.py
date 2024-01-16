@@ -99,6 +99,17 @@ def display_schedule(results, constants, number_weeks):
 def main(time_limit_for_week, mode, number_weeks: int, history_data_file_id: int, week_data_files_ids: list):
     # Loading Data and init constants
     constants = load_data(number_weeks, history_data_file_id, week_data_files_ids)
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    if(mode == 0):
+        print(f"CPLEX for {number_weeks} weeks ({' '.join(map(str, week_data_files_ids))})")
+    else:
+        print()
+
+    display = True
+    if(time_limit_for_week == 0):
+        display = False
+        time_limit_for_week = 10 + 30 * (constants["num_nurses"] - 20)
+        # time_limit_for_week = 10
 
     # accumulate results over weeks
     results = {}
@@ -110,12 +121,19 @@ def main(time_limit_for_week, mode, number_weeks: int, history_data_file_id: int
             compute_one_week_or_tools(time_limit_for_week, week_number, constants, results)
 
     # display results
-    display_schedule(results, constants, number_weeks)
+    if(display):
+        display_schedule(results, constants, number_weeks)
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print("----------------------------------------------------------------")
+    total_value = results[("allweeksoft")]
     for week_number in range(number_weeks):
-        print(results[(week_number, "status")])
-        print(results[(week_number, "value")])
+        print(f"status:          {results[(week_number, 'status')]}")
+        print(f"objective value: {results[(week_number, 'value')]}")
+        # print(f"extra soft:      {results[(week_number, 'allweeksoft')]}")
+        total_value += results[(week_number, "value")]
         print("----------------------------------------------------------------")
+    print(f"value total: {total_value}")
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
 if __name__ == "__main__":
     time_limit_for_week = int(sys.argv[1])

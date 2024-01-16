@@ -15,7 +15,6 @@ shift_to_int = {"Early": 0, "Day": 1, "Late": 2, "Night": 3, "Any": 4}
 skill_to_int = {"HeadNurse": 0, "Nurse": 1, "Caretaker": 2, "Trainee": 3}
 contract_to_int = {"FullTime": 0, "PartTime": 1, "HalfTime": 2}
 day_to_int = {"Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3, "Friday": 4, "Saturday": 5, "Sunday": 6}
-all_weeks = range(1)
 
 def load_data():
     f0 = open("testing\google\data\\hidden-JSON\H0-n035w4-0.json")
@@ -366,18 +365,17 @@ def add_shift_skill_req(model, req, basic_ILP_vars, soft_ILP_vars, constants):
         req["requirementOnSunday"]["optimal"],
     ]
 
-    for week in all_weeks:
-        for day, min_capacity in enumerate(minimal_capacities_in_week):
-            skills_worked = []
-            for n in all_nurses:
-                skills_worked.append(shifts_with_skills[(n, day + week*7, shift, skill)])
-            model.Add(sum(skills_worked) >= min_capacity)
-    for week in all_weeks:
-        for day, opt_capacity in enumerate(optimal_capacities_in_week):
-            skills_worked = []
-            for n in all_nurses:
-                skills_worked.append(shifts_with_skills[(n, day + week*7, shift, skill)])
-            model.Add(opt_capacity - sum(skills_worked) <= insufficient_staffing[(day + week*7, shift, skill)])
+    for day, min_capacity in enumerate(minimal_capacities_in_week):
+        skills_worked = []
+        for n in all_nurses:
+            skills_worked.append(shifts_with_skills[(n, day, shift, skill)])
+        model.Add(sum(skills_worked) >= min_capacity)
+
+    for day, opt_capacity in enumerate(optimal_capacities_in_week):
+        skills_worked = []
+        for n in all_nurses:
+            skills_worked.append(shifts_with_skills[(n, day, shift, skill)])
+        model.Add(opt_capacity - sum(skills_worked) <= insufficient_staffing[(day, shift, skill)])
     return
 
 def add_shift_succession_reqs(model, shifts, all_nurses, all_days, all_shifts, num_days):
@@ -415,13 +413,11 @@ def add_insatisfied_preferences_reqs(model, preferences, unsatisfied_preferences
         shift_id = shift_to_int[preference["shiftType"]]
 
         if shift_id != shift_to_int["Any"]:
-            for week in all_weeks:
-                model.Add(unsatisfied_preferences[(nurse_id, day_id + week*7, shift_id)] == shifts[(nurse_id, day_id + week*7, shift_id)])
+            model.Add(unsatisfied_preferences[(nurse_id, day_id, shift_id)] == shifts[(nurse_id, day_id, shift_id)])
         else:
-            for week in all_weeks:
-                shifts_worked = []
-                for shift in all_shifts:
-                    model.Add(unsatisfied_preferences[(nurse_id, day_id + week*7, shift)] == shifts[(nurse_id, day_id + week*7, shift)])
+            shifts_worked = []
+            for shift in all_shifts:
+                model.Add(unsatisfied_preferences[(nurse_id, day_id, shift)] == shifts[(nurse_id, day_id, shift)])
     return
 
 def add_total_working_weekends_soft_constraints(model, nurses_data, contracts_data, history, total_working_weekends_over_limit, working_weekends, all_nurses):

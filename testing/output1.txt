@@ -1,0 +1,1364 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (1 7 1 8)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 105.0
+----------------------------------------------------------------
+status:          101
+objective value: 30.0
+----------------------------------------------------------------
+value total: 1255.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (1 7 1 8)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 105.0
+----------------------------------------------------------------
+status:          101
+objective value: 30.0
+----------------------------------------------------------------
+value total: 1255.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (1 7 1 8)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 105.0
+----------------------------------------------------------------
+status:          101
+objective value: 30.0
+----------------------------------------------------------------
+value total: 1255.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (1 7 1 8)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 105.0
+----------------------------------------------------------------
+status:          101
+objective value: 30.0
+----------------------------------------------------------------
+value total: 1255.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (1 7 1 8)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 105.0
+----------------------------------------------------------------
+status:          101
+objective value: 30.0
+----------------------------------------------------------------
+value total: 1255.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (1 7 1 8)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 105.0
+----------------------------------------------------------------
+status:          101
+objective value: 30.0
+----------------------------------------------------------------
+value total: 1255.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (1 7 1 8)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 105.0
+----------------------------------------------------------------
+status:          101
+objective value: 30.0
+----------------------------------------------------------------
+value total: 1255.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (1 7 1 8)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 105.0
+----------------------------------------------------------------
+status:          101
+objective value: 30.0
+----------------------------------------------------------------
+value total: 1255.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (1 7 1 8)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 105.0
+----------------------------------------------------------------
+status:          101
+objective value: 30.0
+----------------------------------------------------------------
+value total: 1255.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (1 7 1 8)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 105.0
+----------------------------------------------------------------
+status:          101
+objective value: 30.0
+----------------------------------------------------------------
+value total: 1255.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (4 2 1 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+value total: 1640.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (4 2 1 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+value total: 1640.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (4 2 1 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+value total: 1640.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (4 2 1 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+value total: 1640.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (4 2 1 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+value total: 1640.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (4 2 1 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+value total: 1640.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (4 2 1 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+value total: 1640.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (4 2 1 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+value total: 1640.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (4 2 1 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+value total: 1640.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (4 2 1 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 60.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+status:          101
+objective value: 90.0
+----------------------------------------------------------------
+status:          101
+objective value: 150.0
+----------------------------------------------------------------
+value total: 1640.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (5 9 5 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 135.0
+----------------------------------------------------------------
+status:          101
+objective value: 45.0
+----------------------------------------------------------------
+status:          101
+objective value: 75.0
+----------------------------------------------------------------
+status:          107
+objective value: 105.0
+----------------------------------------------------------------
+value total: 1470.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (5 9 5 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 135.0
+----------------------------------------------------------------
+status:          101
+objective value: 45.0
+----------------------------------------------------------------
+status:          101
+objective value: 75.0
+----------------------------------------------------------------
+status:          107
+objective value: 105.0
+----------------------------------------------------------------
+value total: 1470.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (5 9 5 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 135.0
+----------------------------------------------------------------
+status:          101
+objective value: 45.0
+----------------------------------------------------------------
+status:          101
+objective value: 75.0
+----------------------------------------------------------------
+status:          107
+objective value: 105.0
+----------------------------------------------------------------
+value total: 1470.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (5 9 5 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 135.0
+----------------------------------------------------------------
+status:          101
+objective value: 45.0
+----------------------------------------------------------------
+status:          101
+objective value: 75.0
+----------------------------------------------------------------
+status:          107
+objective value: 105.0
+----------------------------------------------------------------
+value total: 1470.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (5 9 5 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 135.0
+----------------------------------------------------------------
+status:          101
+objective value: 45.0
+----------------------------------------------------------------
+status:          101
+objective value: 75.0
+----------------------------------------------------------------
+status:          107
+objective value: 105.0
+----------------------------------------------------------------
+value total: 1470.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (5 9 5 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 135.0
+----------------------------------------------------------------
+status:          101
+objective value: 45.0
+----------------------------------------------------------------
+status:          101
+objective value: 75.0
+----------------------------------------------------------------
+status:          107
+objective value: 105.0
+----------------------------------------------------------------
+value total: 1470.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (5 9 5 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 135.0
+----------------------------------------------------------------
+status:          101
+objective value: 45.0
+----------------------------------------------------------------
+status:          101
+objective value: 75.0
+----------------------------------------------------------------
+status:          107
+objective value: 105.0
+----------------------------------------------------------------
+value total: 1470.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (5 9 5 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 135.0
+----------------------------------------------------------------
+status:          101
+objective value: 45.0
+----------------------------------------------------------------
+status:          101
+objective value: 75.0
+----------------------------------------------------------------
+status:          107
+objective value: 105.0
+----------------------------------------------------------------
+value total: 1470.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (5 9 5 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          101
+objective value: 135.0
+----------------------------------------------------------------
+status:          101
+objective value: 45.0
+----------------------------------------------------------------
+status:          101
+objective value: 75.0
+----------------------------------------------------------------
+status:          107
+objective value: 105.0
+----------------------------------------------------------------
+value total: 1470.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CPLEX for 4 weeks (5 9 5 6)
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+CPXPARAM_Simplex_Display                         0
+CPXPARAM_Read_DataCheck                          1
+CPXPARAM_MIP_Display                             0
+CPXPARAM_Emphasis_MIP                            2
+CPXPARAM_TimeLimit                               460
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0

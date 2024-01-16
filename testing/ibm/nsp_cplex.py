@@ -732,19 +732,33 @@ def add_soft_constraints(model, basic_ILP_vars, soft_ILP_vars, constants, week_n
 
 def save_tmp_results(results, solver, constants, basic_ILP_vars, soft_ILP_vars, week_number):
     num_days = constants["num_days"]
+    num_weeks = constants["num_weeks"]
     num_nurses = constants["num_nurses"]
     num_skills = constants["num_skills"]
     num_shifts = constants["num_shifts"]
     history_data = constants["h0_data"]
     working_weekends = soft_ILP_vars["working_weekends"]
     incomplete_weekends = soft_ILP_vars["incomplete_weekends"]
+    total_working_days_over_limit = soft_ILP_vars["total_working_days_over_limit"]
+    total_working_days_under_limit = soft_ILP_vars["total_working_days_under_limit"]
+    total_working_weekends_over_limit = soft_ILP_vars["total_working_weekends_over_limit"]
 
     shifts_with_skills = basic_ILP_vars["shifts_with_skills"]
     working_days = basic_ILP_vars["working_days"]
     shifts = basic_ILP_vars["shifts"]
 
+    sub_value = 0
+
+    # if(week_number < num_weeks - 1):
+    for n in range(num_nurses):
+        sub_value += solver.get_values(total_working_days_over_limit[(n)]) * 20
+        sub_value += solver.get_values(total_working_days_under_limit[(n)]) * 20
+        sub_value += solver.get_values(total_working_weekends_over_limit[(n)])  * 30
+
     results[(week_number, "status")] = solver.get_status()
-    results[(week_number, "value")] = solver.get_objective_value()
+    results[(week_number, "value")] = solver.get_objective_value() - sub_value
+    results[(week_number, "allweeksoft")] = sub_value
+    results[("allweeksoft")] = sub_value
 
     for n in range(num_nurses):
         for d in range(num_days):
@@ -901,13 +915,15 @@ def setup_problem(c, constants, week_number):
 
 def compute_one_week(time_limit_for_week, week_number, constants, results):
     c = cplex.Cplex()
+    c.parameters.mip.display.set(0)
+    c.parameters.output.clonelog.set(0)
+    c.parameters.simplex.display.set(0)
     c.parameters.timelimit.set(time_limit_for_week)
     c.parameters.mip.tolerances.absmipgap.set(0.0)
     c.parameters.emphasis.mip.set(
         c.parameters.emphasis.mip.values.optimality)
 
     basic_ILP_vars, soft_ILP_vars = setup_problem(c, constants, week_number)
-
 
     c.solve()
     sol = c.solution
