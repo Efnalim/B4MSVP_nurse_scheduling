@@ -12,21 +12,25 @@ import math
 from google.nsp_contest import compute_one_week as compute_one_week_or_tools
 from ibm.nsp_cplex import compute_one_week as compute_one_week_cplex
 
-def load_data(number_weeks: int, history_data_file_id: int, week_data_files_ids: list):
-    file_name = "google\data\hidden-JSON\H0-n035w4-" + str(history_data_file_id) + ".json"
+def load_data(number_nurses: int, number_weeks: int, history_data_file_id: int, week_data_files_ids: list):
+    """
+    Loads and prepairs data for computation.
+    Returns a dictionary named 'constants' containing loaded data.
+    """
+
+    file_name = "data\hidden-JSON\H0-n0" + str(number_nurses) +"w" + str(number_weeks) + "-" + str(history_data_file_id) + ".json"
     f0 = open(file_name)
     h0_data = json.load(f0)
     f0.close()
 
-    # file_name = "google\data\hidden-JSON\Sc-n035w" + str(number_weeks) + ".json"
-    file_name = "google\data\hidden-JSON\Sc-n035w4.json"
+    file_name = "data\hidden-JSON\Sc-n0" + str(number_nurses) +"w" + str(number_weeks) + ".json"
     f1 = open(file_name)
     sc_data = json.load(f1)
     f1.close()
 
     wd_data = []
     for week in range(number_weeks):
-        file_name = "google\data\hidden-JSON\WD-n035w4-" + str(week_data_files_ids[week]) + ".json"
+        file_name = "data\hidden-JSON\WD-n0" + str(number_nurses) +"w" + str(number_weeks) + "-" + str(week_data_files_ids[week]) + ".json"
         f2 = open(file_name)
         wd_data.append(json.load(f2))
         f2.close()
@@ -60,7 +64,12 @@ def load_data(number_weeks: int, history_data_file_id: int, week_data_files_ids:
 
     return constants
 
+
 def display_schedule(results, constants, number_weeks):
+    """
+    Displays computed schedule as table in a figure.
+    """
+
     num_days = constants["num_days"] * number_weeks
     num_nurses = constants["num_nurses"]
     num_skills = constants["num_skills"]
@@ -96,19 +105,19 @@ def display_schedule(results, constants, number_weeks):
     fig.tight_layout() 
     plt.show() 
 
-def main(time_limit_for_week, mode, number_weeks: int, history_data_file_id: int, week_data_files_ids: list):
+def main(time_limit_for_week, mode, number_nurses: int, number_weeks: int, history_data_file_id: int, week_data_files_ids: list):
     # Loading Data and init constants
-    constants = load_data(number_weeks, history_data_file_id, week_data_files_ids)
+    constants = load_data(number_nurses, number_weeks, history_data_file_id, week_data_files_ids)
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     if(mode == 0):
-        print(f"CPLEX for {number_weeks} weeks ({' '.join(map(str, week_data_files_ids))})")
+        print(f"CPLEX for {number_weeks} weeks ({' '.join(map(str, week_data_files_ids))}) and for {number_nurses} nurses")
     else:
-        print()
+        print(f"OR TOOLS for {number_weeks} weeks ({' '.join(map(str, week_data_files_ids))}) and for {number_nurses} nurses")
 
     display = True
     if(time_limit_for_week == 0):
         display = False
-        time_limit_for_week = 10 + 30 * (constants["num_nurses"] - 20)
+        time_limit_for_week = 10 + 10 * (constants["num_nurses"] - 20)
         # time_limit_for_week = 10
 
     # accumulate results over weeks
@@ -129,7 +138,6 @@ def main(time_limit_for_week, mode, number_weeks: int, history_data_file_id: int
     for week_number in range(number_weeks):
         print(f"status:          {results[(week_number, 'status')]}")
         print(f"objective value: {results[(week_number, 'value')]}")
-        # print(f"extra soft:      {results[(week_number, 'allweeksoft')]}")
         total_value += results[(week_number, "value")]
         print("----------------------------------------------------------------")
     print(f"value total: {total_value}")
@@ -138,7 +146,8 @@ def main(time_limit_for_week, mode, number_weeks: int, history_data_file_id: int
 if __name__ == "__main__":
     time_limit_for_week = int(sys.argv[1])
     mode = int(sys.argv[2])
-    number_weeks = int(sys.argv[3])
-    history_data_file_id = int(sys.argv[4])
-    week_data_files_ids = list(map(int, (sys.argv[5:])))
-    main(time_limit_for_week, mode, number_weeks, history_data_file_id, week_data_files_ids)
+    number_nurses = int(sys.argv[3])
+    number_weeks = int(sys.argv[4])
+    history_data_file_id = int(sys.argv[5])
+    week_data_files_ids = list(map(int, (sys.argv[6:])))
+    main(time_limit_for_week, mode, number_nurses, number_weeks, history_data_file_id, week_data_files_ids)

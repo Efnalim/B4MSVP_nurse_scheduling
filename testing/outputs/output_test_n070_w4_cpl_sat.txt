@@ -1,0 +1,162 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+OR TOOLS for 4 weeks (3 6 5 1) and for 70 nurses
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16125.0
+----------------------------------------------------------------
+status:          The problem is infeasible.
+objective value: 99999
+----------------------------------------------------------------
+status:          The problem is infeasible.
+objective value: 99999
+----------------------------------------------------------------
+status:          The problem is infeasible.
+objective value: 99999
+----------------------------------------------------------------
+value total: 316122.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+OR TOOLS for 4 weeks (4 9 6 7) and for 70 nurses
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16515.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16065.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 17075.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 15270.0
+----------------------------------------------------------------
+value total: 64925.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+OR TOOLS for 4 weeks (4 9 7 6) and for 70 nurses
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16515.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16065.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 15820.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 14890.0
+----------------------------------------------------------------
+value total: 63290.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+OR TOOLS for 4 weeks (8 6 0 8) and for 70 nurses
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 17555.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16790.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 17250.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 17035.0
+----------------------------------------------------------------
+value total: 68630.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+OR TOOLS for 4 weeks (9 1 7 5) and for 70 nurses
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 17230.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16310.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 15825.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 15540.0
+----------------------------------------------------------------
+value total: 64905.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+OR TOOLS for 4 weeks (1 3 8 8) and for 70 nurses
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16645.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 14745.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 17530.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16455.0
+----------------------------------------------------------------
+value total: 65375.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+OR TOOLS for 4 weeks (0 5 6 8) and for 70 nurses
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16775.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 17195.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 17080.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16665.0
+----------------------------------------------------------------
+value total: 67715.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+OR TOOLS for 4 weeks (3 5 8 2) and for 70 nurses
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 17020.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 15715.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16830.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16285.0
+----------------------------------------------------------------
+value total: 65850.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+OR TOOLS for 4 weeks (5 8 2 5) and for 70 nurses
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16655.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16940.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16155.0
+----------------------------------------------------------------
+status:          A feasible solution has been found, but it might not be optimal.
+objective value: 16425.0
+----------------------------------------------------------------
+value total: 66175.0
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -13,6 +13,11 @@ contract_to_int = {"FullTime": 0, "PartTime": 1, "HalfTime": 2}
 day_to_int = {"Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3, "Friday": 4, "Saturday": 5, "Sunday": 6}
 
 def init_ilp_vars(model, constants):
+    """
+    Initializes basic variables for primarly for hard contraints.
+    Returns a dictionary 'basic_ILP_vars' containing the names of those variables for further manipulation. 
+    """
+
     all_nurses = constants["all_nurses"]
     all_shifts = constants["all_shifts"]
     all_days = constants["all_days"]
@@ -71,13 +76,12 @@ def init_ilp_vars(model, constants):
     return basic_ILP_vars
 
 def add_shift_succession_reqs(model, shifts, all_nurses, all_days, all_shifts, num_days, constants):
+    """
+    Adds hard constraint that disables invalid pairs of succcessive shift types.
+    """
+
     for n in all_nurses:
         last_shift = shift_to_int[constants["h0_data"]["nurseHistory"][n]["lastAssignedShiftType"]]
-        # if(last_shift == 1):
-        #     model.linear_constraints.add(
-        #         lin_expr=[cplex.SparsePair([shifts[n][0][last_shift - 1]], [1])],
-        #         senses=["E"],
-        #         rhs=[0])
         if(last_shift == 2):
             model.linear_constraints.add(
                 lin_expr=[cplex.SparsePair([shifts[n][0][last_shift - 1], shifts[n][0][last_shift - 2]], [1] * 2)],
@@ -91,11 +95,6 @@ def add_shift_succession_reqs(model, shifts, all_nurses, all_days, all_shifts, n
 
         for d in range(num_days - 1):
             for s in all_shifts:
-                # if(s == 1):
-                #     model.linear_constraints.add(
-                #         lin_expr=[cplex.SparsePair([shifts[n][d][s], shifts[n][d + 1][s - 1]], [1] * 2)],
-                #         senses=["L"],
-                #         rhs=[1])
                 if(s == 2):
                     model.linear_constraints.add(
                         lin_expr=[cplex.SparsePair([shifts[n][d][s], shifts[n][d + 1][s - 1], shifts[n][d + 1][s - 2]], [1] * 3)],
@@ -108,6 +107,10 @@ def add_shift_succession_reqs(model, shifts, all_nurses, all_days, all_shifts, n
                         rhs=[1])
 
 def add_missing_skill_req(model, nurses_data, shifts_with_skills, all_days, all_shifts, all_skills):
+    """
+    Adds hard constraint that disables nurses working shift with a skill that they do not possess.
+    """
+
     for n, nurse_data in enumerate(nurses_data):
         for sk in all_skills:
             has_skill = False
@@ -125,6 +128,10 @@ def add_missing_skill_req(model, nurses_data, shifts_with_skills, all_days, all_
 
 
 def add_hard_constrains(model, basic_ILP_vars, constants):
+    """
+    Adds all hard constraints to the model.
+    """
+
     all_nurses = constants["all_nurses"]
     all_shifts = constants["all_shifts"]
     all_days = constants["all_days"]
@@ -163,6 +170,7 @@ def add_hard_constrains(model, basic_ILP_vars, constants):
                 senses=["E"],
                 rhs=[0])
     
+    # If nurse is working with a shift, she is working that day.
     for n in all_nurses:
         for d in all_days:
             model.linear_constraints.add(
@@ -177,6 +185,10 @@ def add_hard_constrains(model, basic_ILP_vars, constants):
         add_shift_skill_req_minimal(model, req, basic_ILP_vars, constants)
 
 def add_shift_skill_req_minimal(model, req, basic_ILP_vars, constants):
+    """
+    Adds hard constraint that dictates minimal number of nurses in a shift working with specific skill.
+    """
+
     all_nurses = constants["all_nurses"]
     shifts_with_skills = basic_ILP_vars["shifts_with_skills"]
 
@@ -749,13 +761,25 @@ def save_tmp_results(results, solver, constants, basic_ILP_vars, soft_ILP_vars, 
 
     sub_value = 0
 
-    # if(week_number < num_weeks - 1):
+    if solver.is_primal_feasible() == False:
+        results[(week_number, "status")] = "infeasible solution"
+        results[(week_number, "value")] = 99999
+        results[(week_number, "allweeksoft")] = 0
+        return
+    
     for n in range(num_nurses):
         sub_value += solver.get_values(total_working_days_over_limit[(n)]) * 20
         sub_value += solver.get_values(total_working_days_under_limit[(n)]) * 20
         sub_value += solver.get_values(total_working_weekends_over_limit[(n)])  * 30
 
     results[(week_number, "status")] = solver.get_status()
+
+    if(solver.get_status() == 101):
+        results[(week_number, "status")] = "Optimal solution found"
+
+    if(solver.get_status() == 107):
+        results[(week_number, "status")] = "Stopped due time limit"
+
     results[(week_number, "value")] = solver.get_objective_value() - sub_value
     results[(week_number, "allweeksoft")] = sub_value
     results[("allweeksoft")] = sub_value

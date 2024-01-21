@@ -1,6 +1,5 @@
-# PATAT conference
-# Timetabling comunity
-"""Example of a simple nurse scheduling problem."""
+#!/usr/bin/python
+
 from ortools.sat.python import cp_model
 
 import json
@@ -12,57 +11,6 @@ shift_to_int = {"Early": 0, "Day": 1, "Late": 2, "Night": 3, "Any": 4, "None": 5
 skill_to_int = {"HeadNurse": 0, "Nurse": 1, "Caretaker": 2, "Trainee": 3}
 contract_to_int = {"FullTime": 0, "PartTime": 1, "HalfTime": 2}
 day_to_int = {"Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3, "Friday": 4, "Saturday": 5, "Sunday": 6}
-
-def load_data():
-    f0 = open("testing\google\data\\hidden-JSON\H0-n035w4-0.json")
-    h0_data = json.load(f0)
-    f0.close()
-
-    f1 = open("testing\google\data\\hidden-JSON\Sc-n035w4.json")
-    sc_data = json.load(f1)
-    f1.close()
-
-    f2 = open("testing\google\data\\hidden-JSON\WD-n035w4-1.json")
-    wd_data_0 = json.load(f2)    
-    f2.close()
-
-    f3 = open("testing\google\data\\hidden-JSON\WD-n035w4-4.json")
-    wd_data_1 = json.load(f3)    
-    f3.close()
-
-    f4 = open("testing\google\data\\hidden-JSON\WD-n035w4-1.json")
-    wd_data_2 = json.load(f4)    
-    f4.close()
-
-    f5 = open("testing\google\data\\hidden-JSON\WD-n035w4-8.json")
-    wd_data_3 = json.load(f5)    
-    f5.close()
-
-    # initialize constants
-    num_nurses = len(sc_data["nurses"])
-    num_shifts = len(sc_data["shiftTypes"])
-    num_skills = len(sc_data["skills"])
-    num_days = 7
-    all_nurses = range(num_nurses)
-    all_shifts = range(num_shifts)
-    all_days = range(num_days)
-    all_skills = range(num_skills)
-
-    constants = {}
-    constants["h0_data"] = h0_data
-    constants["sc_data"] = sc_data
-    constants["wd_data"] = wd_data_0
-    constants["all_wd_data"] = [wd_data_0, wd_data_1, wd_data_2, wd_data_3]
-    constants["num_nurses"] = num_nurses
-    constants["num_shifts"] = num_shifts
-    constants["num_skills"] = num_skills
-    constants["num_days"] = num_days
-    constants["all_nurses"] = all_nurses
-    constants["all_shifts"] = all_shifts
-    constants["all_days"] = all_days
-    constants["all_skills"] = all_skills
-
-    return constants
 
 def init_ilp_vars(model, constants):
     all_nurses = constants["all_nurses"]
@@ -655,37 +603,29 @@ def print_results(solver, solution_printer, basic_ILP_vars, soft_ILP_vars, const
     violations_of_max_consecutive_days_off_for_nurse = soft_ILP_vars["violations_of_max_consecutive_days_off_for_nurse"]
     violations_of_max_consecutive_working_days_for_nurse = soft_ILP_vars["violations_of_max_consecutive_working_days_for_nurse"]
 
-    # Statistics.
-    # print("\nStatistics")
-    # print(f"  - conflicts      : {solver.NumConflicts()}")
-    # print(f"  - branches       : {solver.NumBranches()}")
-    # print(f"  - wall time      : {solver.WallTime()} s")
-    # print(f"  - solutions found: {solution_printer.solution_count()}")
-    # print(f"  - minimum of objective function: {solver.ObjectiveValue()}\n")
-
     schedule_table = np.zeros([num_nurses, num_days * num_shifts]) 
     legend = np.zeros([1, num_skills + 1])
 
     for d in range(num_days):
-        # print(f"Day {d}")
         for n in range(num_nurses):
-            is_working = False
             for s in range(num_shifts):
                 for sk in range(num_skills):
                     if solver.Value(shifts_with_skills[(n, d, s, sk)]) == 1:
-                        is_working = True
                         schedule_table[n][d*num_shifts + s] = 1 - (0.2 * sk)
-                        # print(f"  Nurse {n} works shift {s} with skill {sk}")
-            # if not is_working:
-                # print(f"  Nurse {n} does not work")
-    # for n in range(num_nurses):
-    #     print(f"  Nurse {n} works {solver.Value(total_working_weekends_over_limit[(n)])} weekends over limit")
-    #     # print(f"  Nurse {n} works {solver.Value(working_weekends[(n, 0)])} {solver.Value(working_weekends[(n, 1)])} {solver.Value(working_weekends[(n, 2)])} {solver.Value(working_weekends[(n, 3)])}")
-    #     print(f"  Nurse {n} works {solver.Value(total_working_days[(n)])} days in month, that is {solver.Value(total_working_days_over_limit[(n)])} over limit")
-    #     print(f"  Nurse {n} has {solver.Value(violations_of_max_consecutive_days_off_for_nurse[(n)])} consecutive days off over limit")
-    #     print(f"  Nurse {n} works {solver.Value(violations_of_max_consecutive_working_days_for_nurse[(n)])} consecutive days over limit")
 
-def save_tmp_results(results, solver, constants, basic_ILP_vars, soft_ILP_vars, week_number):
+def handle_status(status):
+    switch = {
+        cp_model.FEASIBLE: "A feasible solution has been found, but it might not be optimal.",
+        cp_model.OPTIMAL: "An optimal solution has been found.",
+        cp_model.INFEASIBLE: "The problem is infeasible.",
+        cp_model.MODEL_INVALID: "The model is invalid.",
+        cp_model.UNKNOWN: "The solver could not determine the status.",
+    }
+    
+    result = switch.get(status, "Unknown status code: {}".format(status))
+    return (result)
+
+def save_tmp_results(results, solver, status, constants, basic_ILP_vars, soft_ILP_vars, week_number):
     num_days = constants["num_days"]
     num_nurses = constants["num_nurses"]
     num_skills = constants["num_skills"]
@@ -697,7 +637,14 @@ def save_tmp_results(results, solver, constants, basic_ILP_vars, soft_ILP_vars, 
     working_days = basic_ILP_vars["working_days"]
     shifts = basic_ILP_vars["shifts"]
 
-    results[(week_number, "status")] = "status"
+    if(status != cp_model.FEASIBLE and status != cp_model.OPTIMAL):
+        results[(week_number, "status")] = handle_status(status)
+        results[(week_number, "value")] = 99999
+        results[(week_number, "allweeksoft")] = 0
+        results[("allweeksoft")] = 0
+        return 
+
+    results[(week_number, "status")] = handle_status(status)
     results[(week_number, "value")] = solver.ObjectiveValue()
     results[(week_number, "allweeksoft")] = 0
     results[("allweeksoft")] = 0
@@ -805,11 +752,8 @@ def compute_one_week(time_limit_for_week, week_number, constants, results):
     solution_printer = NursesPartialSolutionPrinter(basic_ILP_vars, soft_ILP_vars, constants, solution_limit)
 
     solver.parameters.max_time_in_seconds = time_limit_for_week
-    # solver.parameters.max_time_in_seconds = 2 * 10 + 30 * (35 - 20)
-    # solver.parameters.max_time_in_seconds = 60.0
-    # solver.parameters.max_time_in_seconds = 3*60*60.0
-    solver.Solve(model, solution_printer)
+    status = solver.Solve(model, solution_printer)
 
-    save_tmp_results(results, solver, constants, basic_ILP_vars, soft_ILP_vars, week_number)
-    print_results(solver, solution_printer, basic_ILP_vars, soft_ILP_vars, constants)
+    save_tmp_results(results, solver, status, constants, basic_ILP_vars, soft_ILP_vars, week_number)
+    # print_results(solver, solution_printer, basic_ILP_vars, soft_ILP_vars, constants)
     return
